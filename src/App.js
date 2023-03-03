@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React, { createContext, useState } from 'react'
 import './App.css';
 
+import Lower from './Lower';
+
+export const Pass =createContext();
 function App() {
+  const [content,Setcontent] =useState("") 
+  const [btnchange,Setbtnchange]=useState("Dark")
+   const [colors,Setcolors]=useState(
+    {
+      color:'black',
+      backgroundColor:'white'
+
+  }
+   )
+    const [change,Setchange] =useState({
+        color:'black',
+        backgroundColor:'white'
+
+    })
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Pass.Provider value={btnchange} >
+      <Lower
+       change={change}
+       Setchange={Setchange} 
+       btnchange={btnchange}
+      Setbtnchange={Setbtnchange}
+      content={content}
+      Setcontent={Setcontent}
+      colors={colors}
+      Setcolors={Setcolors}
+      />
+      </Pass.Provider>
     </div>
   );
 }
-
 export default App;
